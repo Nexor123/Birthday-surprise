@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,6 +157,17 @@ button{
  from{transform:scale(.94)}
  to{transform:scale(1.08)}
 }
+.love-lines{
+ background:linear-gradient(140deg,#fffaff,#f5eaff);
+ border:2px solid #e5cef8;
+ border-radius:22px;
+ padding:18px;
+ margin:20px auto;
+ line-height:2;
+ box-shadow:0 8px 25px #b58ad033;
+}
+.love-lines p{margin:10px 0;font-size:16px}
+.love-title{animation:float 1.8s infinite}
 footer{font-size:12px;color:#aa8bc2;margin:15px}
 @media(max-width:450px){
  .card{padding:20px 13px}
@@ -187,11 +197,11 @@ footer{font-size:12px;color:#aa8bc2;margin:15px}
    for you. Get ready for something special! 🥹
   </p>
 
-  <!-- DUDU BROWN BEAR KISSING BUBU WHITE BEAR -->
+  <!-- DUDU HOLDING FLOWERS WITH FLOATING HEARTS -->
   <div class="gifbox">
    <img
-    src="https://gifdb.com/images/branded/high/dudu-kissing-bubu-hearts-gif-ohi53sgm3xj46ra2.gif"
-    alt="Dudu the brown bear kissing Bubu the white panda">
+    src="https://gifdb.com/images/branded/high/cartoon-bear-giving-flowers-0xuzfehlaopawhr7.gif"
+    alt="Dudu holding flowers with floating hearts">
   </div>
 
   <h2>Are you ready, princess? 🧸</h2>
@@ -317,7 +327,7 @@ footer{font-size:12px;color:#aa8bc2;margin:15px}
  </div>
 </section>
 
-<!-- FINAL: DUDU KISSING BUBU -->
+<!-- FINAL: DUDU SAYS I LOVE YOU -->
 <section class="screen hidden" id="final">
  <div class="card">
   <div style="font-size:30px">💗 💋 💜 💋 💗</div>
@@ -329,7 +339,7 @@ footer{font-size:12px;color:#aa8bc2;margin:15px}
   <div class="gifbox final-kiss">
    <img
     src="https://gifdb.com/images/branded/high/dudu-kissing-bubu-hearts-gif-ohi53sgm3xj46ra2.gif"
-    alt="Dudu the brown bear giving kisses to Bubu the white panda">
+    alt="Dudu the brown bear giving kisses to Bubu the white bear">
   </div>
 
   <p>
@@ -340,7 +350,33 @@ footer{font-size:12px;color:#aa8bc2;margin:15px}
 
   <div style="font-size:35px">🐻 💜 🐼</div>
 
-  <h1>Happiest Birthday Again!</h1>
+  <h1 class="love-title">Dudu Has Something to Say... 🥺</h1>
+
+  <div class="gifbox">
+   <img
+    src="https://gifdb.com/images/branded/high/bubu-dudu-says-i-love-you-59xut2pyh2xw9dff.gif"
+    alt="Dudu and Bubu saying I love you">
+  </div>
+
+  <h1>I LOVE YOU, MY PRINCESS! ❤️</h1>
+
+  <div class="love-lines">
+   <p>💗 If I could choose again, I'd choose you in every lifetime.</p>
+
+   <p>😘 Stop being so cute... my heart can't handle it!</p>
+
+   <p>🌹 You're my favourite person, my sweetest thought and my happiest place.</p>
+
+   <p>🥰 I don't need a thousand wishes. I just need you beside me.</p>
+
+   <p>💋 Warning: Dudu is officially addicted to Bubu's kisses!</p>
+
+   <p>❤️ My favourite place in the whole world is right next to you.</p>
+  </div>
+
+  <h2>Forever yours, my princess! 💜</h2>
+
+  <h1>Happiest Birthday Again! 🎂</h1>
 
   <p>
    May your life always be filled with
@@ -364,8 +400,6 @@ let musicStarted=false;
 let musicTimer=null;
 let musicStep=0;
 
-// ROMANTIC ORIGINAL INSTRUMENTAL
-// Soft piano-like notes and warm harmonies.
 const melody=[
  [261.63,329.63,392.00],
  [293.66,349.23,440.00],
@@ -427,18 +461,13 @@ async function startMusic(){
   musicStarted=true;
   musicBeat();
   musicTimer=setInterval(musicBeat,2200);
- }catch(error){
-  // Browser may require another user interaction.
- }
+ }catch(error){}
 }
 
-// Try automatic playback when the website opens.
 window.addEventListener("load",()=>{
  startMusic();
 });
 
-// If browser blocks autoplay, begin on the first touch/click.
-// No visible music button is needed.
 function firstInteraction(){
  startMusic();
  document.removeEventListener("pointerdown",firstInteraction);
@@ -448,7 +477,6 @@ function firstInteraction(){
 document.addEventListener("pointerdown",firstInteraction);
 document.addEventListener("keydown",firstInteraction);
 
-// Soft clicking sound.
 function clickSound(){
  try{
   const ctx=getAudio();
@@ -484,7 +512,6 @@ function rejectClicked(){
  const accept=document.getElementById("accept");
  const text=document.getElementById("choiceText");
 
- // Only ACCEPT grows. REJECT stays the same size.
  const scale=Math.min(1+rejectCount*.18,2.2);
  accept.style.transform="scale("+scale+")";
 
