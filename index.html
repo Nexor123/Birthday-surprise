@@ -10,70 +10,97 @@
 <style>
 * { box-sizing:border-box; }
 
+:root {
+  --lavender:#eadcff;
+  --purple:#a477d1;
+  --deep:#8053a7;
+  --pink:#f6dff3;
+  --white:#fffaff;
+}
+
 body {
   margin:0;
   min-height:100vh;
-  font-family:'Trebuchet MS',sans-serif;
-  background:linear-gradient(135deg,#f8f0ff,#e9d9ff,#f5eaff);
-  color:#76539c;
-  text-align:center;
   overflow-x:hidden;
+  font-family:"Trebuchet MS",sans-serif;
+  color:var(--deep);
+  text-align:center;
+  background:
+    radial-gradient(circle at top left,#fff 0,transparent 35%),
+    linear-gradient(135deg,#fbf5ff,#e9d8ff,#f9e9f8);
 }
 
 .screen {
   min-height:100vh;
-  padding:35px 18px;
+  width:100%;
+  padding:30px 16px;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
+  flex-direction:column;
+  position:relative;
 }
 
 .hidden { display:none !important; }
 
-h1 {
-  font-size:clamp(2rem,7vw,3.3rem);
-  margin:15px 0;
-  color:#855bb2;
-  text-shadow:0 3px 15px #fff;
+.card {
+  width:min(540px,96%);
+  padding:26px 20px;
+  border:2px solid #fff;
+  border-radius:30px;
+  background:#ffffffd9;
+  box-shadow:0 15px 55px #9d72bd38;
+  backdrop-filter:blur(12px);
 }
 
-h2 { color:#9366bd; }
+h1 {
+  color:#895bb5;
+  font-size:clamp(2rem,7vw,3.1rem);
+  line-height:1.2;
+  margin:15px 0;
+}
+
+h2 { color:#a477c9; }
 
 p {
   font-size:1.05rem;
   line-height:1.8;
 }
 
-.gif {
-  width:min(270px,75vw);
-  border-radius:20px;
-  margin:15px auto;
-  display:block;
+.ribbon {
+  font-size:30px;
+  animation:float 2s ease-in-out infinite;
 }
 
 button {
   border:0;
   border-radius:40px;
-  padding:15px 30px;
-  font-size:1.05rem;
+  padding:15px 27px;
+  font-size:16px;
   font-weight:bold;
+  font-family:inherit;
   cursor:pointer;
-  transition:transform .3s,box-shadow .3s;
-  box-shadow:0 7px 20px #a786c655;
+  transition:transform .35s,box-shadow .35s;
+  box-shadow:0 7px 22px #9872b344;
 }
 
-button:active { transform:scale(.95); }
+button:active { filter:brightness(.96); }
 
 .accept {
-  background:#a77bd5;
+  background:linear-gradient(135deg,#a77bd8,#8054b0);
   color:white;
+  position:relative;
+  z-index:3;
+  transform-origin:center;
 }
 
 .reject {
   background:#fff;
-  color:#9366bd;
-  margin:12px;
+  color:#9165b5;
+  border:2px solid #ead9f8;
+  position:relative;
+  z-index:2;
+  transform:none !important;
 }
 
 .buttons {
@@ -81,176 +108,214 @@ button:active { transform:scale(.95); }
   justify-content:center;
   align-items:center;
   flex-wrap:wrap;
-  gap:12px;
-  margin-top:20px;
+  gap:18px;
+  margin:28px auto 15px;
 }
 
-.card {
-  background:#ffffffbd;
-  width:min(540px,94vw);
-  border:2px solid #fff;
-  border-radius:28px;
-  padding:25px 20px;
-  box-shadow:0 12px 45px #9c77bd30;
-  backdrop-filter:blur(10px);
+.gifbox {
+  width:min(300px,85%);
+  margin:20px auto;
+  border-radius:24px;
+  overflow:hidden;
+  background:#f6edff;
+  box-shadow:0 8px 25px #a67cc044;
+}
+
+.tenor-gif-embed {
+  max-width:100% !important;
+  margin:auto !important;
+}
+
+.gifbox iframe {
+  border:0;
+}
+
+.caption {
+  color:#a078bf;
+  font-size:14px;
 }
 
 .sparkle {
   position:fixed;
   pointer-events:none;
-  z-index:5;
-  animation:floatUp 5s linear forwards;
+  z-index:20;
+  animation:rise 5s linear forwards;
 }
 
-@keyframes floatUp {
+@keyframes rise {
   0% { transform:translateY(0) rotate(0);opacity:0; }
   15% { opacity:1; }
   100% { transform:translateY(-110vh) rotate(360deg);opacity:0; }
 }
 
-@keyframes pulse {
-  0%,100% { transform:scale(1); }
-  50% { transform:scale(1.07); }
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-10px); }
 }
 
 @keyframes boom {
   0% { transform:scale(1); }
-  30% { transform:scale(1.5) rotate(-12deg); }
-  60% { transform:scale(.65) rotate(12deg); }
+  25% { transform:scale(1.5) rotate(-10deg); }
+  50% { transform:scale(.5) rotate(10deg); }
+  75% { transform:scale(1.2); }
   100% { transform:scale(1); }
 }
 
 .envelope {
-  font-size:100px;
-  background:none;
+  font-size:95px;
+  background:transparent;
   box-shadow:none;
-  padding:15px;
-  animation:pulse 1.5s infinite;
+  animation:float 1.6s infinite;
+  padding:12px;
 }
 
 .envelope.boom {
-  animation:boom .7s ease;
+  animation:boom .8s ease;
 }
 
 .letter {
-  background:#fffaff;
-  border:2px solid #d8b9f4;
-  border-radius:22px;
   padding:25px;
+  margin:20px auto;
   text-align:left;
   line-height:1.9;
-  box-shadow:0 0 35px #c7a1e9;
+  background:linear-gradient(140deg,#fffaff,#f8edff);
+  border:2px solid #d9b9f4;
+  border-radius:22px;
+  box-shadow:0 10px 35px #b48ad044;
   animation:letterOpen 1s ease;
 }
 
 @keyframes letterOpen {
-  from { opacity:0; transform:scale(.3) rotate(-8deg); }
+  from { opacity:0; transform:scale(.25) rotate(-10deg); }
   to { opacity:1; transform:scale(1) rotate(0); }
 }
 
 .confetti {
   position:fixed;
-  top:-20px;
-  z-index:10;
+  top:-30px;
   pointer-events:none;
-  animation:fall 3s linear forwards;
+  z-index:30;
+  animation:fall 3.5s linear forwards;
 }
 
 @keyframes fall {
-  to { transform:translateY(110vh) rotate(720deg);opacity:0; }
+  to { transform:translateY(110vh) rotate(700deg);opacity:0; }
+}
+
+.final-gif {
+  animation:kissBounce .65s ease-in-out infinite alternate;
+  transform-origin:center;
+}
+
+@keyframes kissBounce {
+  from { transform:scale(.94) rotate(-2deg); }
+  to { transform:scale(1.07) rotate(2deg); }
 }
 
 footer {
-  margin-top:25px;
-  font-size:.8rem;
-  opacity:.7;
+  margin-top:22px;
+  font-size:12px;
+  color:#a88ac1;
 }
 
 @media(max-width:480px) {
   .card { padding:22px 14px; }
-  button { padding:14px 24px; }
+  .buttons { gap:12px; }
+  button { padding:14px 22px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING DECORATIONS -->
-<div id="decor"></div>
-
-<!-- FIRST SCREEN -->
-<section class="screen" id="welcome">
-
+<div id="welcome" class="screen">
   <div class="card">
-    <div style="font-size:35px">🎀 ✨ 💜 ✨ 🎀</div>
+
+    <div class="ribbon">🎀 🌸 💜 🌸 🎀</div>
 
     <h1>Happiest Birthday,<br>My Princess 💜</h1>
 
     <p>
-      Today is all about happiness, smiles,
-      little surprises and lots of love! 🧸
+      A little lavender magic, a little happiness,
+      and a whole lot of surprises await you! 🥹
     </p>
 
-    <div class="tenor-gif-embed"
-      data-postid="10050377970945395295"
-      data-share-method="host"
-      data-width="100%"
-      data-aspect-ratio="1.157">
+    <div class="gifbox">
+      <div class="tenor-gif-embed"
+        data-postid="3691420574671263744"
+        data-share-method="host"
+        data-width="100%"
+        data-aspect-ratio="1.729">
+      </div>
     </div>
 
-    <h2>Are you ready for your surprise? 🥹</h2>
+    <h2>Are you ready for your surprise? 🧸</h2>
 
     <div class="buttons">
-      <button class="accept" onclick="acceptSurprise()">
+      <button class="accept" id="accept"
+        onclick="acceptSurprise()">
         ACCEPT 💜
       </button>
 
       <button class="reject" id="reject"
-        onclick="growReject()">
+        onclick="rejectClicked()">
         REJECT 🙈
       </button>
     </div>
 
-    <p id="rejectText" style="font-size:13px">
-      Choose wisely, princess! 😝
+    <p class="caption" id="choiceText">
+      Dudu and Bubu are waiting for you! 💗
     </p>
   </div>
+</div>
 
-</section>
-
-<!-- SECOND SCREEN -->
-<section class="screen hidden" id="surprise">
-
+<!-- BIRTHDAY CELEBRATION -->
+<div id="celebration" class="screen hidden">
   <div class="card">
-    <h1>YAYYYYY! 🥹💜</h1>
 
-    <h2>Your magical birthday world awaits!</h2>
+    <div class="ribbon">🎂 🎈 ✨ 🎈 🎂</div>
 
-    <div class="tenor-gif-embed"
-      data-postid="5775551500309076664"
-      data-share-method="host"
-      data-width="100%"
-      data-aspect-ratio="1.045">
+    <h1>YAYYYYY! 💜</h1>
+
+    <h2>Let the birthday magic begin!</h2>
+
+    <div class="gifbox">
+      <div class="tenor-gif-embed"
+        data-postid="11410718876816416346"
+        data-share-method="host"
+        data-width="100%"
+        data-aspect-ratio="0.725">
+      </div>
     </div>
 
     <p>
-      Sending you a universe full of hugs,
-      smiles and endless happiness! 🧸
+      Dudu and Bubu have brought a cake,
+      balloons and unlimited hugs for you! 🧸
     </p>
 
-    <div class="tenor-gif-embed"
-      data-postid="10886865914923239147"
-      data-share-method="host"
-      data-width="100%"
-      data-aspect-ratio="1.368">
+    <div class="gifbox">
+      <div class="tenor-gif-embed"
+        data-postid="3691420574671263744"
+        data-share-method="host"
+        data-width="100%"
+        data-aspect-ratio="1.729">
+      </div>
     </div>
 
-    <h2>A special little letter is waiting for you 💌</h2>
+    <h2>Something special is waiting... 💌</h2>
 
     <button class="envelope" id="envelope"
       onclick="openLetter()">💌</button>
 
-    <p>Tap the letter, princess!</p>
+    <p class="caption">Tap the envelope to open your letter</p>
 
     <div id="letterArea" class="hidden">
 
@@ -259,71 +324,112 @@ footer {
           To My Princess 💜
         </h2>
 
-        Happy Birthday, my princess! 🎂💜
+        Happiest Birthday, my princess! 🎂
 
         <br><br>
 
-        May your beautiful smile never fade,
-        may your heart always stay happy,
-        and may every little dream of yours
-        come true.
+        Today is your day, and I hope it brings
+        you endless smiles, beautiful surprises
+        and all the happiness your heart can hold.
 
         <br><br>
 
-        You deserve all the happiness,
-        all the magic and all the beautiful
-        things this world has to offer.
+        You deserve the softest hugs,
+        the sweetest moments, the prettiest
+        flowers and every little thing that
+        makes you happy.
 
         <br><br>
 
-        I hope today brings you a thousand
-        reasons to smile and memories that
-        make your heart warm.
+        May your dreams come true, your smile
+        shine brighter every day, and your life
+        always be filled with love and magic.
 
         <br><br>
 
-        Keep smiling, keep shining and
-        always remember how special you are.
+        If Dudu and Bubu could send you a million
+        hugs, they absolutely would! 🧸💗
 
         <br><br>
 
-        Sending you the biggest virtual hug
-        from Dudu and Bubu! 🧸💗
+        Keep smiling, beautiful princess.
+        Today and always, you deserve the best.
 
         <h2 style="text-align:center">
-          Happiest Birthday Again! 🎀
+          Lots of love and birthday magic! 💜
         </h2>
       </div>
 
-      <div class="tenor-gif-embed"
-        data-postid="10050377970945395295"
-        data-share-method="host"
-        data-width="100%"
-        data-aspect-ratio="1.157">
+      <div class="gifbox">
+        <div class="tenor-gif-embed"
+          data-postid="6337639925041832527"
+          data-share-method="host"
+          data-width="100%"
+          data-aspect-ratio="1.772">
+        </div>
       </div>
 
-      <h1>Stay Happy, Princess! 💜</h1>
-      <p>May your day be as magical as you are. ✨</p>
+      <h2>Wait... one last surprise! 🥹</h2>
 
-      <button class="accept" onclick="celebrate()">
-        MORE MAGIC ✨
+      <button class="accept" onclick="moreSurprise()">
+        MORE SURPRISE ✨
       </button>
 
     </div>
   </div>
+</div>
 
-  <footer>Made with lots of love 💜</footer>
+<!-- FINAL KISS SURPRISE -->
+<div id="finalScreen" class="screen hidden">
+  <div class="card">
 
-</section>
+    <div class="ribbon">💗 💋 💗 💋 💗</div>
+
+    <h1>Surprise, Princess! 🥹</h1>
+
+    <h2>Dudu has unlimited kisses for Bubu! 💋</h2>
+
+    <div class="gifbox final-gif">
+      <div class="tenor-gif-embed"
+        data-postid="4925145573150692314"
+        data-share-method="host"
+        data-width="100%"
+        data-aspect-ratio="1">
+      </div>
+    </div>
+
+    <p>
+      Muahhh! Muahhh! Muahhh! 💋💋💋
+      <br>
+      Sending you endless birthday kisses! 💜
+    </p>
+
+    <div class="ribbon">🧸 💜 🐼</div>
+
+    <h1>Happiest Birthday Again!</h1>
+
+    <p>
+      May your world always be as lovely,
+      sweet and magical as this little surprise. 🌸
+    </p>
+
+    <button class="accept" onclick="replay()">
+      REPLAY MY SURPRISE 🎀
+    </button>
+
+  </div>
+</div>
+
+<footer>Made with lots of love 💜</footer>
 
 <script async src="https://tenor.com/embed.js"></script>
 
 <script>
-let rejectClicks = 0;
+let rejectCount = 0;
 
 function acceptSurprise() {
   document.getElementById("welcome").classList.add("hidden");
-  document.getElementById("surprise").classList.remove("hidden");
+  document.getElementById("celebration").classList.remove("hidden");
 
   confetti();
   startHearts();
@@ -331,31 +437,32 @@ function acceptSurprise() {
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function growReject() {
-  rejectClicks++;
+function rejectClicked() {
+  rejectCount++;
 
-  const reject = document.getElementById("reject");
-  const text = document.getElementById("rejectText");
+  const accept = document.getElementById("accept");
+  const text = document.getElementById("choiceText");
 
-  const size = 1 + rejectClicks * 0.22;
-
-  reject.style.transform = `scale(${size})`;
+  // ONLY ACCEPT grows. REJECT remains its original size.
+  const scale = Math.min(1 + rejectCount * 0.18, 2.2);
+  accept.style.transform = "scale(" + scale + ")";
+  accept.style.boxShadow = "0 0 28px #bd91e9";
 
   const messages = [
-    "Are you sure? 🥺",
-    "Dudu is getting sad! 😭",
-    "Bubu wants you to press ACCEPT! 🐼",
-    "Hehe! Just press ACCEPT already! 💜",
-    "Okay princess, one more hug? 🧸"
+    "Hehe! Try ACCEPT, princess! 🥺",
+    "Dudu is asking you nicely! 🧸",
+    "Bubu says ACCEPT! 💗",
+    "Look how big ACCEPT is getting! 😝",
+    "One click for unlimited birthday magic! ✨"
   ];
 
   text.textContent =
-    messages[Math.min(rejectClicks - 1, messages.length - 1)];
+    messages[Math.min(rejectCount-1,messages.length-1)];
 }
 
 function openLetter() {
   const envelope = document.getElementById("envelope");
-  const letter = document.getElementById("letterArea");
+  const area = document.getElementById("letterArea");
 
   envelope.classList.remove("boom");
   void envelope.offsetWidth;
@@ -364,49 +471,72 @@ function openLetter() {
   confetti();
 
   setTimeout(() => {
-    letter.classList.remove("hidden");
-    letter.scrollIntoView({behavior:"smooth",block:"start"});
+    area.classList.remove("hidden");
+    area.scrollIntoView({behavior:"smooth",block:"start"});
   },700);
 }
 
-function confetti() {
-  const symbols = ["💜","💗","✨","🎀","🌸","💖","🧸"];
+function moreSurprise() {
+  document.getElementById("celebration").classList.add("hidden");
+  document.getElementById("finalScreen").classList.remove("hidden");
 
-  for(let i=0;i<45;i++) {
+  confetti();
+  startHearts();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function confetti() {
+  const symbols = ["💜","💗","✨","🎀","🌸","💖","🎉","💋"];
+
+  for(let i=0;i<65;i++) {
     const item = document.createElement("div");
     item.className = "confetti";
     item.textContent =
       symbols[Math.floor(Math.random()*symbols.length)];
 
-    item.style.left = Math.random()*100 + "vw";
-    item.style.fontSize = (16+Math.random()*20)+"px";
+    item.style.left = Math.random()*100+"vw";
+    item.style.fontSize = (15+Math.random()*20)+"px";
     item.style.animationDuration = (2+Math.random()*3)+"s";
 
     document.body.appendChild(item);
-
-    setTimeout(()=>item.remove(),5000);
+    setTimeout(()=>item.remove(),5500);
   }
 }
 
+let heartTimer = null;
+
 function startHearts() {
-  setInterval(() => {
+  if(heartTimer) return;
+
+  heartTimer = setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "sparkle";
-    heart.textContent = ["💜","💗","✨","🌸"][
-      Math.floor(Math.random()*4)
+    heart.textContent = ["💜","💗","✨","🌸","💋"][
+      Math.floor(Math.random()*5)
     ];
 
     heart.style.left = Math.random()*100+"vw";
-    heart.style.bottom = "-30px";
-    heart.style.fontSize = "22px";
+    heart.style.bottom = "-25px";
+    heart.style.fontSize = "23px";
 
     document.body.appendChild(heart);
     setTimeout(()=>heart.remove(),5000);
-  },700);
+  },600);
 }
 
-function celebrate() {
-  confetti();
+function replay() {
+  document.getElementById("finalScreen").classList.add("hidden");
+  document.getElementById("welcome").classList.remove("hidden");
+
+  rejectCount = 0;
+  document.getElementById("accept").style.transform = "scale(1)";
+  document.getElementById("choiceText").textContent =
+    "Dudu and Bubu are waiting for you! 💗";
+
+  document.getElementById("letterArea").classList.add("hidden");
+
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 </script>
 
