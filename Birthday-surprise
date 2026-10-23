@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eadcff">
+<title>Happiest Birthday, My Princess 💜</title>
+
+<style>
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  font-family:'Trebuchet MS',sans-serif;
+  background:linear-gradient(135deg,#f8f0ff,#e9d9ff,#f5eaff);
+  color:#76539c;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+.screen {
+  min-height:100vh;
+  padding:35px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.hidden { display:none !important; }
+
+h1 {
+  font-size:clamp(2rem,7vw,3.3rem);
+  margin:15px 0;
+  color:#855bb2;
+  text-shadow:0 3px 15px #fff;
+}
+
+h2 { color:#9366bd; }
+
+p {
+  font-size:1.05rem;
+  line-height:1.8;
+}
+
+.gif {
+  width:min(270px,75vw);
+  border-radius:20px;
+  margin:15px auto;
+  display:block;
+}
+
+button {
+  border:0;
+  border-radius:40px;
+  padding:15px 30px;
+  font-size:1.05rem;
+  font-weight:bold;
+  cursor:pointer;
+  transition:transform .3s,box-shadow .3s;
+  box-shadow:0 7px 20px #a786c655;
+}
+
+button:active { transform:scale(.95); }
+
+.accept {
+  background:#a77bd5;
+  color:white;
+}
+
+.reject {
+  background:#fff;
+  color:#9366bd;
+  margin:12px;
+}
+
+.buttons {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+
+.card {
+  background:#ffffffbd;
+  width:min(540px,94vw);
+  border:2px solid #fff;
+  border-radius:28px;
+  padding:25px 20px;
+  box-shadow:0 12px 45px #9c77bd30;
+  backdrop-filter:blur(10px);
+}
+
+.sparkle {
+  position:fixed;
+  pointer-events:none;
+  z-index:5;
+  animation:floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+  0% { transform:translateY(0) rotate(0);opacity:0; }
+  15% { opacity:1; }
+  100% { transform:translateY(-110vh) rotate(360deg);opacity:0; }
+}
+
+@keyframes pulse {
+  0%,100% { transform:scale(1); }
+  50% { transform:scale(1.07); }
+}
+
+@keyframes boom {
+  0% { transform:scale(1); }
+  30% { transform:scale(1.5) rotate(-12deg); }
+  60% { transform:scale(.65) rotate(12deg); }
+  100% { transform:scale(1); }
+}
+
+.envelope {
+  font-size:100px;
+  background:none;
+  box-shadow:none;
+  padding:15px;
+  animation:pulse 1.5s infinite;
+}
+
+.envelope.boom {
+  animation:boom .7s ease;
+}
+
+.letter {
+  background:#fffaff;
+  border:2px solid #d8b9f4;
+  border-radius:22px;
+  padding:25px;
+  text-align:left;
+  line-height:1.9;
+  box-shadow:0 0 35px #c7a1e9;
+  animation:letterOpen 1s ease;
+}
+
+@keyframes letterOpen {
+  from { opacity:0; transform:scale(.3) rotate(-8deg); }
+  to { opacity:1; transform:scale(1) rotate(0); }
+}
+
+.confetti {
+  position:fixed;
+  top:-20px;
+  z-index:10;
+  pointer-events:none;
+  animation:fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to { transform:translateY(110vh) rotate(720deg);opacity:0; }
+}
+
+footer {
+  margin-top:25px;
+  font-size:.8rem;
+  opacity:.7;
+}
+
+@media(max-width:480px) {
+  .card { padding:22px 14px; }
+  button { padding:14px 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING DECORATIONS -->
+<div id="decor"></div>
+
+<!-- FIRST SCREEN -->
+<section class="screen" id="welcome">
+
+  <div class="card">
+    <div style="font-size:35px">🎀 ✨ 💜 ✨ 🎀</div>
+
+    <h1>Happiest Birthday,<br>My Princess 💜</h1>
+
+    <p>
+      Today is all about happiness, smiles,
+      little surprises and lots of love! 🧸
+    </p>
+
+    <div class="tenor-gif-embed"
+      data-postid="10050377970945395295"
+      data-share-method="host"
+      data-width="100%"
+      data-aspect-ratio="1.157">
+    </div>
+
+    <h2>Are you ready for your surprise? 🥹</h2>
+
+    <div class="buttons">
+      <button class="accept" onclick="acceptSurprise()">
+        ACCEPT 💜
+      </button>
+
+      <button class="reject" id="reject"
+        onclick="growReject()">
+        REJECT 🙈
+      </button>
+    </div>
+
+    <p id="rejectText" style="font-size:13px">
+      Choose wisely, princess! 😝
+    </p>
+  </div>
+
+</section>
+
+<!-- SECOND SCREEN -->
+<section class="screen hidden" id="surprise">
+
+  <div class="card">
+    <h1>YAYYYYY! 🥹💜</h1>
+
+    <h2>Your magical birthday world awaits!</h2>
+
+    <div class="tenor-gif-embed"
+      data-postid="5775551500309076664"
+      data-share-method="host"
+      data-width="100%"
+      data-aspect-ratio="1.045">
+    </div>
+
+    <p>
+      Sending you a universe full of hugs,
+      smiles and endless happiness! 🧸
+    </p>
+
+    <div class="tenor-gif-embed"
+      data-postid="10886865914923239147"
+      data-share-method="host"
+      data-width="100%"
+      data-aspect-ratio="1.368">
+    </div>
+
+    <h2>A special little letter is waiting for you 💌</h2>
+
+    <button class="envelope" id="envelope"
+      onclick="openLetter()">💌</button>
+
+    <p>Tap the letter, princess!</p>
+
+    <div id="letterArea" class="hidden">
+
+      <div class="letter">
+        <h2 style="text-align:center">
+          To My Princess 💜
+        </h2>
+
+        Happy Birthday, my princess! 🎂💜
+
+        <br><br>
+
+        May your beautiful smile never fade,
+        may your heart always stay happy,
+        and may every little dream of yours
+        come true.
+
+        <br><br>
+
+        You deserve all the happiness,
+        all the magic and all the beautiful
+        things this world has to offer.
+
+        <br><br>
+
+        I hope today brings you a thousand
+        reasons to smile and memories that
+        make your heart warm.
+
+        <br><br>
+
+        Keep smiling, keep shining and
+        always remember how special you are.
+
+        <br><br>
+
+        Sending you the biggest virtual hug
+        from Dudu and Bubu! 🧸💗
+
+        <h2 style="text-align:center">
+          Happiest Birthday Again! 🎀
+        </h2>
+      </div>
+
+      <div class="tenor-gif-embed"
+        data-postid="10050377970945395295"
+        data-share-method="host"
+        data-width="100%"
+        data-aspect-ratio="1.157">
+      </div>
+
+      <h1>Stay Happy, Princess! 💜</h1>
+      <p>May your day be as magical as you are. ✨</p>
+
+      <button class="accept" onclick="celebrate()">
+        MORE MAGIC ✨
+      </button>
+
+    </div>
+  </div>
+
+  <footer>Made with lots of love 💜</footer>
+
+</section>
+
+<script async src="https://tenor.com/embed.js"></script>
+
+<script>
+let rejectClicks = 0;
+
+function acceptSurprise() {
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("surprise").classList.remove("hidden");
+
+  confetti();
+  startHearts();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function growReject() {
+  rejectClicks++;
+
+  const reject = document.getElementById("reject");
+  const text = document.getElementById("rejectText");
+
+  const size = 1 + rejectClicks * 0.22;
+
+  reject.style.transform = `scale(${size})`;
+
+  const messages = [
+    "Are you sure? 🥺",
+    "Dudu is getting sad! 😭",
+    "Bubu wants you to press ACCEPT! 🐼",
+    "Hehe! Just press ACCEPT already! 💜",
+    "Okay princess, one more hug? 🧸"
+  ];
+
+  text.textContent =
+    messages[Math.min(rejectClicks - 1, messages.length - 1)];
+}
+
+function openLetter() {
+  const envelope = document.getElementById("envelope");
+  const letter = document.getElementById("letterArea");
+
+  envelope.classList.remove("boom");
+  void envelope.offsetWidth;
+  envelope.classList.add("boom");
+
+  confetti();
+
+  setTimeout(() => {
+    letter.classList.remove("hidden");
+    letter.scrollIntoView({behavior:"smooth",block:"start"});
+  },700);
+}
+
+function confetti() {
+  const symbols = ["💜","💗","✨","🎀","🌸","💖","🧸"];
+
+  for(let i=0;i<45;i++) {
+    const item = document.createElement("div");
+    item.className = "confetti";
+    item.textContent =
+      symbols[Math.floor(Math.random()*symbols.length)];
+
+    item.style.left = Math.random()*100 + "vw";
+    item.style.fontSize = (16+Math.random()*20)+"px";
+    item.style.animationDuration = (2+Math.random()*3)+"s";
+
+    document.body.appendChild(item);
+
+    setTimeout(()=>item.remove(),5000);
+  }
+}
+
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "sparkle";
+    heart.textContent = ["💜","💗","✨","🌸"][
+      Math.floor(Math.random()*4)
+    ];
+
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.bottom = "-30px";
+    heart.style.fontSize = "22px";
+
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  },700);
+}
+
+function celebrate() {
+  confetti();
+}
+</script>
+
+</body>
+</html>
