@@ -3,540 +3,584 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#eadcff">
 <title>Happiest Birthday, My Princess 💜</title>
 
 <style>
-* { box-sizing:border-box; }
-
-:root {
-  --lavender:#eadcff;
-  --purple:#a477d1;
-  --deep:#8053a7;
-  --pink:#f6dff3;
-  --white:#fffaff;
+*{box-sizing:border-box}
+:root{
+ --bg:#f5edff;
+ --lav:#eadcff;
+ --purple:#a879d3;
+ --deep:#8054a9;
+ --pink:#f9e2f5;
+ --white:#fffaff;
 }
-
-body {
-  margin:0;
-  min-height:100vh;
-  overflow-x:hidden;
-  font-family:"Trebuchet MS",sans-serif;
-  color:var(--deep);
-  text-align:center;
-  background:
-    radial-gradient(circle at top left,#fff 0,transparent 35%),
-    linear-gradient(135deg,#fbf5ff,#e9d8ff,#f9e9f8);
+body{
+ margin:0;
+ font-family:"Trebuchet MS",sans-serif;
+ color:var(--deep);
+ text-align:center;
+ background:linear-gradient(145deg,#fffaff,#eee1ff,#f8eaff);
+ overflow-x:hidden;
 }
-
-.screen {
-  min-height:100vh;
-  width:100%;
-  padding:30px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  position:relative;
+.screen{
+ min-height:100vh;
+ padding:28px 14px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
 }
-
-.hidden { display:none !important; }
-
-.card {
-  width:min(540px,96%);
-  padding:26px 20px;
-  border:2px solid #fff;
-  border-radius:30px;
-  background:#ffffffd9;
-  box-shadow:0 15px 55px #9d72bd38;
-  backdrop-filter:blur(12px);
+.hidden{display:none!important}
+.card{
+ width:min(540px,96%);
+ padding:25px 19px;
+ border:2px solid white;
+ border-radius:30px;
+ background:rgba(255,250,255,.95);
+ box-shadow:0 12px 45px #9870b52c;
 }
-
-h1 {
-  color:#895bb5;
-  font-size:clamp(2rem,7vw,3.1rem);
-  line-height:1.2;
-  margin:15px 0;
+h1{
+ color:#875bb1;
+ font-size:clamp(2rem,7vw,3rem);
+ line-height:1.2;
 }
-
-h2 { color:#a477c9; }
-
-p {
-  font-size:1.05rem;
-  line-height:1.8;
+h2{color:#a176c9}
+p{line-height:1.8;font-size:16px}
+button{
+ border:0;
+ border-radius:40px;
+ padding:15px 25px;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+ font-family:inherit;
 }
-
-.ribbon {
-  font-size:30px;
-  animation:float 2s ease-in-out infinite;
+.primary{
+ color:white;
+ background:linear-gradient(130deg,#bd94e5,#885bb5);
+ box-shadow:0 6px 20px #a77bd455;
+ transform-origin:center;
+ transition:transform .3s;
 }
-
-button {
-  border:0;
-  border-radius:40px;
-  padding:15px 27px;
-  font-size:16px;
-  font-weight:bold;
-  font-family:inherit;
-  cursor:pointer;
-  transition:transform .35s,box-shadow .35s;
-  box-shadow:0 7px 22px #9872b344;
+.secondary{
+ color:#9166b7;
+ background:white;
+ border:2px solid #eadcf7;
 }
-
-button:active { filter:brightness(.96); }
-
-.accept {
-  background:linear-gradient(135deg,#a77bd8,#8054b0);
-  color:white;
-  position:relative;
-  z-index:3;
-  transform-origin:center;
+.buttons{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:16px;
+ margin:25px 0;
 }
-
-.reject {
-  background:#fff;
-  color:#9165b5;
-  border:2px solid #ead9f8;
-  position:relative;
-  z-index:2;
-  transform:none !important;
+.gifbox{
+ width:min(320px,90%);
+ margin:18px auto;
+ padding:9px;
+ border:2px solid white;
+ border-radius:22px;
+ background:#f3e9ff;
+ box-shadow:0 7px 24px #a77bd42c;
+ overflow:hidden;
 }
-
-.buttons {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:18px;
-  margin:28px auto 15px;
+.tenor-gif-embed{
+ max-width:100%!important;
+ margin:auto!important;
 }
-
-.gifbox {
-  width:min(300px,85%);
-  margin:20px auto;
-  border-radius:24px;
-  overflow:hidden;
-  background:#f6edff;
-  box-shadow:0 8px 25px #a67cc044;
+.tenor-gif-embed iframe{
+ border:0!important;
 }
-
-.tenor-gif-embed {
-  max-width:100% !important;
-  margin:auto !important;
+.music-control{
+ position:fixed;
+ z-index:100;
+ top:13px;
+ right:13px;
+ padding:11px 15px;
+ background:#fffaff;
+ color:#8658b2;
+ border:1px solid #ddc6f4;
+ box-shadow:0 4px 14px #9670b533;
+ font-size:13px;
 }
-
-.gifbox iframe {
-  border:0;
+.envelope{
+ font-size:95px;
+ background:transparent;
+ padding:10px;
+ animation:float 1.6s infinite;
 }
-
-.caption {
-  color:#a078bf;
-  font-size:14px;
+.envelope.boom{animation:boom .8s ease}
+.letter{
+ background:linear-gradient(140deg,#fffaff,#f5eaff);
+ border:2px solid #d9b9f3;
+ border-radius:22px;
+ padding:24px;
+ margin:20px auto;
+ text-align:left;
+ line-height:1.95;
+ box-shadow:0 8px 30px #b58ad044;
+ animation:reveal 1s ease;
 }
-
-.sparkle {
-  position:fixed;
-  pointer-events:none;
-  z-index:20;
-  animation:rise 5s linear forwards;
+.letter h2{text-align:center}
+.dance-caption{
+ padding:12px;
+ background:#f5eaff;
+ border-radius:18px;
 }
-
-@keyframes rise {
-  0% { transform:translateY(0) rotate(0);opacity:0; }
-  15% { opacity:1; }
-  100% { transform:translateY(-110vh) rotate(360deg);opacity:0; }
+.floating{
+ position:fixed;
+ pointer-events:none;
+ z-index:20;
+ animation:rise 5s linear forwards;
 }
-
-@keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-10px); }
+@keyframes rise{
+ 0%{transform:translateY(0);opacity:0}
+ 15%{opacity:1}
+ 100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
 }
-
-@keyframes boom {
-  0% { transform:scale(1); }
-  25% { transform:scale(1.5) rotate(-10deg); }
-  50% { transform:scale(.5) rotate(10deg); }
-  75% { transform:scale(1.2); }
-  100% { transform:scale(1); }
+@keyframes float{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-10px)}
 }
-
-.envelope {
-  font-size:95px;
-  background:transparent;
-  box-shadow:none;
-  animation:float 1.6s infinite;
-  padding:12px;
+@keyframes boom{
+ 0%{transform:scale(1)}
+ 25%{transform:scale(1.5) rotate(-12deg)}
+ 50%{transform:scale(.5) rotate(12deg)}
+ 75%{transform:scale(1.2)}
+ 100%{transform:scale(1)}
 }
-
-.envelope.boom {
-  animation:boom .8s ease;
+@keyframes reveal{
+ from{opacity:0;transform:scale(.3) rotate(-8deg)}
+ to{opacity:1;transform:scale(1) rotate(0)}
 }
-
-.letter {
-  padding:25px;
-  margin:20px auto;
-  text-align:left;
-  line-height:1.9;
-  background:linear-gradient(140deg,#fffaff,#f8edff);
-  border:2px solid #d9b9f4;
-  border-radius:22px;
-  box-shadow:0 10px 35px #b48ad044;
-  animation:letterOpen 1s ease;
+.confetti{
+ position:fixed;
+ top:-25px;
+ z-index:30;
+ pointer-events:none;
+ animation:fall 3.5s linear forwards;
 }
-
-@keyframes letterOpen {
-  from { opacity:0; transform:scale(.25) rotate(-10deg); }
-  to { opacity:1; transform:scale(1) rotate(0); }
+@keyframes fall{
+ to{transform:translateY(110vh) rotate(700deg);opacity:0}
 }
-
-.confetti {
-  position:fixed;
-  top:-30px;
-  pointer-events:none;
-  z-index:30;
-  animation:fall 3.5s linear forwards;
+.final-kiss{
+ animation:kiss 0.65s ease-in-out infinite alternate;
 }
-
-@keyframes fall {
-  to { transform:translateY(110vh) rotate(700deg);opacity:0; }
+@keyframes kiss{
+ from{transform:scale(.95)}
+ to{transform:scale(1.06)}
 }
-
-.final-gif {
-  animation:kissBounce .65s ease-in-out infinite alternate;
-  transform-origin:center;
+footer{font-size:12px;color:#aa8bc2;margin:15px}
+@media(max-width:450px){
+ .card{padding:20px 13px}
+ .buttons{gap:12px}
+ button{padding:14px 20px}
 }
-
-@keyframes kissBounce {
-  from { transform:scale(.94) rotate(-2deg); }
-  to { transform:scale(1.07) rotate(2deg); }
-}
-
-footer {
-  margin-top:22px;
-  font-size:12px;
-  color:#a88ac1;
-}
-
-@media(max-width:480px) {
-  .card { padding:22px 14px; }
-  .buttons { gap:12px; }
-  button { padding:14px 22px; }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
-  }
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  animation:none!important;
+  transition:none!important;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<div id="welcome" class="screen">
-  <div class="card">
+<button class="music-control" id="musicButton"
+ onclick="toggleMusic()">♫ Play music</button>
 
-    <div class="ribbon">🎀 🌸 💜 🌸 🎀</div>
+<!-- WELCOME -->
+<section class="screen" id="welcome">
+ <div class="card">
+  <div style="font-size:29px">🎀 🌸 ✨ 💜</div>
 
-    <h1>Happiest Birthday,<br>My Princess 💜</h1>
+  <h1>Happiest Birthday,<br>My Princess 💜</h1>
 
-    <p>
-      A little lavender magic, a little happiness,
-      and a whole lot of surprises await you! 🥹
-    </p>
+  <p>
+   A magical little birthday world is waiting
+   for you. Get ready for something special! 🥹
+  </p>
 
-    <div class="gifbox">
-      <div class="tenor-gif-embed"
-        data-postid="3691420574671263744"
-        data-share-method="host"
-        data-width="100%"
-        data-aspect-ratio="1.729">
-      </div>
-    </div>
-
-    <h2>Are you ready for your surprise? 🧸</h2>
-
-    <div class="buttons">
-      <button class="accept" id="accept"
-        onclick="acceptSurprise()">
-        ACCEPT 💜
-      </button>
-
-      <button class="reject" id="reject"
-        onclick="rejectClicked()">
-        REJECT 🙈
-      </button>
-    </div>
-
-    <p class="caption" id="choiceText">
-      Dudu and Bubu are waiting for you! 💗
-    </p>
+  <!-- Different welcome GIF -->
+  <div class="gifbox">
+   <div class="tenor-gif-embed"
+    data-postid="16014929987702109227"
+    data-share-method="host"
+    data-width="100%"
+    data-aspect-ratio="1">
+   </div>
   </div>
-</div>
 
-<!-- BIRTHDAY CELEBRATION -->
-<div id="celebration" class="screen hidden">
-  <div class="card">
+  <h2>Are you ready, princess? 🧸</h2>
 
-    <div class="ribbon">🎂 🎈 ✨ 🎈 🎂</div>
+  <div class="buttons">
+   <button class="primary" id="accept"
+    onclick="acceptSurprise()">ACCEPT 💜</button>
 
-    <h1>YAYYYYY! 💜</h1>
-
-    <h2>Let the birthday magic begin!</h2>
-
-    <div class="gifbox">
-      <div class="tenor-gif-embed"
-        data-postid="11410718876816416346"
-        data-share-method="host"
-        data-width="100%"
-        data-aspect-ratio="0.725">
-      </div>
-    </div>
-
-    <p>
-      Dudu and Bubu have brought a cake,
-      balloons and unlimited hugs for you! 🧸
-    </p>
-
-    <div class="gifbox">
-      <div class="tenor-gif-embed"
-        data-postid="3691420574671263744"
-        data-share-method="host"
-        data-width="100%"
-        data-aspect-ratio="1.729">
-      </div>
-    </div>
-
-    <h2>Something special is waiting... 💌</h2>
-
-    <button class="envelope" id="envelope"
-      onclick="openLetter()">💌</button>
-
-    <p class="caption">Tap the envelope to open your letter</p>
-
-    <div id="letterArea" class="hidden">
-
-      <div class="letter">
-        <h2 style="text-align:center">
-          To My Princess 💜
-        </h2>
-
-        Happiest Birthday, my princess! 🎂
-
-        <br><br>
-
-        Today is your day, and I hope it brings
-        you endless smiles, beautiful surprises
-        and all the happiness your heart can hold.
-
-        <br><br>
-
-        You deserve the softest hugs,
-        the sweetest moments, the prettiest
-        flowers and every little thing that
-        makes you happy.
-
-        <br><br>
-
-        May your dreams come true, your smile
-        shine brighter every day, and your life
-        always be filled with love and magic.
-
-        <br><br>
-
-        If Dudu and Bubu could send you a million
-        hugs, they absolutely would! 🧸💗
-
-        <br><br>
-
-        Keep smiling, beautiful princess.
-        Today and always, you deserve the best.
-
-        <h2 style="text-align:center">
-          Lots of love and birthday magic! 💜
-        </h2>
-      </div>
-
-      <div class="gifbox">
-        <div class="tenor-gif-embed"
-          data-postid="6337639925041832527"
-          data-share-method="host"
-          data-width="100%"
-          data-aspect-ratio="1.772">
-        </div>
-      </div>
-
-      <h2>Wait... one last surprise! 🥹</h2>
-
-      <button class="accept" onclick="moreSurprise()">
-        MORE SURPRISE ✨
-      </button>
-
-    </div>
+   <button class="secondary"
+    onclick="rejectClicked()">REJECT 🙈</button>
   </div>
-</div>
 
-<!-- FINAL KISS SURPRISE -->
-<div id="finalScreen" class="screen hidden">
-  <div class="card">
+  <p id="choiceText" style="font-size:13px">
+   Dudu and Bubu are waiting! 💗
+  </p>
+ </div>
+</section>
 
-    <div class="ribbon">💗 💋 💗 💋 💗</div>
+<!-- BIRTHDAY PARTY -->
+<section class="screen hidden" id="birthday">
+ <div class="card">
+  <div style="font-size:32px">🎂 🎈 🎁 ✨</div>
 
-    <h1>Surprise, Princess! 🥹</h1>
+  <h1>YAYYYYY! 🥹💜</h1>
+  <h2>It's your special day!</h2>
 
-    <h2>Dudu has unlimited kisses for Bubu! 💋</h2>
+  <!-- Birthday GIF 1 -->
+  <div class="gifbox">
+   <div class="tenor-gif-embed"
+    data-postid="3691420574671263744"
+    data-share-method="host"
+    data-width="100%"
+    data-aspect-ratio="1.729">
+   </div>
+  </div>
 
-    <div class="gifbox final-gif">
-      <div class="tenor-gif-embed"
-        data-postid="4925145573150692314"
-        data-share-method="host"
-        data-width="100%"
-        data-aspect-ratio="1">
-      </div>
+  <p>
+   Dudu and Bubu brought a birthday cake
+   just for this beautiful celebration! 🎂
+  </p>
+
+  <!-- Birthday GIF 2 -->
+  <div class="gifbox">
+   <div class="tenor-gif-embed"
+    data-postid="10238174132751638317"
+    data-share-method="host"
+    data-width="100%"
+    data-aspect-ratio="1">
+   </div>
+  </div>
+
+  <h2>And now... it's dance time! 💃</h2>
+
+  <!-- Different dancing GIF -->
+  <div class="gifbox">
+   <div class="tenor-gif-embed"
+    data-postid="6243732641963548177"
+    data-share-method="host"
+    data-width="100%"
+    data-aspect-ratio="1">
+   </div>
+  </div>
+
+  <div class="dance-caption">
+   <h2>Dudu is showing off his dance moves! 😂</h2>
+   <p>Bubu can't stop smiling! 🐼</p>
+  </div>
+
+  <h2>One more special thing is waiting... 💌</h2>
+
+  <button class="envelope" id="envelope"
+   onclick="openLetter()">💌</button>
+
+  <p style="font-size:13px">Tap the envelope, princess!</p>
+
+  <!-- LETTER -->
+  <div id="letterArea" class="hidden">
+
+   <div class="letter">
+    <h2>To My Princess 💜</h2>
+
+    Happiest Birthday, my princess! 🎂💗
+
+    <br><br>
+
+    I hope your day is filled with beautiful
+    moments, endless laughter, sweet surprises
+    and everything that makes your heart happy.
+
+    <br><br>
+
+    You deserve the prettiest flowers,
+    the warmest hugs, the sweetest wishes
+    and a million reasons to smile.
+
+    <br><br>
+
+    May every dream you hold close come true.
+    May happiness always find its way to you.
+    And may your beautiful smile shine brighter
+    with every passing day.
+
+    <br><br>
+
+    Today is all about you, your happiness
+    and all the magic you bring into the world.
+
+    <br><br>
+
+    Dudu and Bubu are sending you unlimited
+    hugs, kisses and birthday wishes! 🧸💋
+
+    <h2>Keep smiling, my princess! 💜</h2>
+   </div>
+
+   <!-- Different romantic GIF -->
+   <div class="gifbox">
+    <div class="tenor-gif-embed"
+     data-postid="5775551500309076664"
+     data-share-method="host"
+     data-width="100%"
+     data-aspect-ratio="1">
     </div>
+   </div>
 
-    <p>
-      Muahhh! Muahhh! Muahhh! 💋💋💋
-      <br>
-      Sending you endless birthday kisses! 💜
-    </p>
+   <h2>Wait... your last surprise! 🥹</h2>
 
-    <div class="ribbon">🧸 💜 🐼</div>
-
-    <h1>Happiest Birthday Again!</h1>
-
-    <p>
-      May your world always be as lovely,
-      sweet and magical as this little surprise. 🌸
-    </p>
-
-    <button class="accept" onclick="replay()">
-      REPLAY MY SURPRISE 🎀
-    </button>
+   <button class="primary"
+    onclick="moreSurprise()">MORE SURPRISE ✨</button>
 
   </div>
-</div>
+ </div>
+</section>
+
+<!-- FINAL KISSING SCENE -->
+<section class="screen hidden" id="final">
+ <div class="card">
+  <div style="font-size:30px">💗 💋 💜 💋 💗</div>
+
+  <h1>Unlimited Birthday Kisses!</h1>
+
+  <h2>Dudu can't stop kissing Bubu! 🥹</h2>
+
+  <!-- Separate kissing GIF -->
+  <div class="gifbox final-kiss">
+   <div class="tenor-gif-embed"
+    data-postid="5149737818304710119"
+    data-share-method="host"
+    data-width="100%"
+    data-aspect-ratio="1">
+   </div>
+  </div>
+
+  <p>
+   Muahhh! Muahhh! Muahhh! 💋💋💋
+   <br>
+   Sending you a million virtual kisses!
+  </p>
+
+  <div style="font-size:35px">🧸 💜 🐼</div>
+
+  <h1>Happiest Birthday Again!</h1>
+
+  <p>
+   May your life always be filled with
+   love, laughter and lavender magic. 🌸
+  </p>
+
+  <button class="primary" onclick="replay()">
+   REPLAY SURPRISE 🎀
+  </button>
+ </div>
+</section>
 
 <footer>Made with lots of love 💜</footer>
 
 <script async src="https://tenor.com/embed.js"></script>
 
 <script>
-let rejectCount = 0;
+let rejectCount=0;
+let audioContext=null;
+let musicPlaying=false;
+let musicTimer=null;
+let musicStep=0;
 
-function acceptSurprise() {
-  document.getElementById("welcome").classList.add("hidden");
-  document.getElementById("celebration").classList.remove("hidden");
-
-  confetti();
-  startHearts();
-
-  window.scrollTo({top:0,behavior:"smooth"});
+function getAudio(){
+ if(!audioContext){
+  audioContext=new (window.AudioContext||window.webkitAudioContext)();
+ }
+ if(audioContext.state==="suspended") audioContext.resume();
+ return audioContext;
 }
 
-function rejectClicked() {
-  rejectCount++;
+// Gentle original musical notes
+function note(freq,duration,volume=.035,type="sine"){
+ const ctx=getAudio();
+ const osc=ctx.createOscillator();
+ const gain=ctx.createGain();
 
-  const accept = document.getElementById("accept");
-  const text = document.getElementById("choiceText");
+ osc.type=type;
+ osc.frequency.value=freq;
+ gain.gain.setValueAtTime(0,ctx.currentTime);
+ gain.gain.linearRampToValueAtTime(volume,ctx.currentTime+.06);
+ gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+duration);
 
-  // ONLY ACCEPT grows. REJECT remains its original size.
-  const scale = Math.min(1 + rejectCount * 0.18, 2.2);
-  accept.style.transform = "scale(" + scale + ")";
-  accept.style.boxShadow = "0 0 28px #bd91e9";
+ osc.connect(gain);
+ gain.connect(ctx.destination);
+ osc.start();
+ osc.stop(ctx.currentTime+duration+.03);
+}
 
-  const messages = [
-    "Hehe! Try ACCEPT, princess! 🥺",
-    "Dudu is asking you nicely! 🧸",
-    "Bubu says ACCEPT! 💗",
-    "Look how big ACCEPT is getting! 😝",
-    "One click for unlimited birthday magic! ✨"
+// Soft original click sound
+function clickSound(){
+ try{
+  note(660,.09,.035,"sine");
+  setTimeout(()=>note(880,.10,.025,"sine"),45);
+ }catch(e){}
+}
+
+// Original gentle lavender-style instrumental
+const melody=[
+ [523.25,659.25,783.99],
+ [587.33,698.46,880],
+ [659.25,783.99,987.77],
+ [587.33,698.46,880],
+ [523.25,659.25,783.99],
+ [440,554.37,659.25],
+ [493.88,587.33,739.99],
+ [523.25,659.25,783.99]
+];
+
+function playMusicStep(){
+ if(!musicPlaying)return;
+
+ const chord=melody[musicStep%melody.length];
+
+ chord.forEach((f,i)=>{
+  setTimeout(()=>note(f,1.8,i===0?.035:.018),i*55);
+ });
+
+ musicStep++;
+}
+
+function toggleMusic(){
+ clickSound();
+ if(!musicPlaying){
+  getAudio();
+  musicPlaying=true;
+  playMusicStep();
+  musicTimer=setInterval(playMusicStep,1800);
+  document.getElementById("musicButton").textContent="♫ Pause music";
+ }else{
+  musicPlaying=false;
+  clearInterval(musicTimer);
+  document.getElementById("musicButton").textContent="♫ Play music";
+ }
+}
+
+// Button click sounds
+document.addEventListener("click",function(e){
+ if(e.target.closest("button") &&
+    e.target.id!=="musicButton"){
+  clickSound();
+ }
+});
+
+function showScreen(id){
+ ["welcome","birthday","final"].forEach(name=>{
+  document.getElementById(name).classList.add("hidden");
+ });
+ document.getElementById(id).classList.remove("hidden");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function acceptSurprise(){
+ getAudio();
+ showScreen("birthday");
+ confetti();
+ startHearts();
+}
+
+function rejectClicked(){
+ rejectCount++;
+
+ const accept=document.getElementById("accept");
+ const text=document.getElementById("choiceText");
+
+ // Only ACCEPT gets bigger.
+ const scale=Math.min(1+rejectCount*.18,2.2);
+ accept.style.transform="scale("+scale+")";
+
+ const messages=[
+  "Are you sure, princess? 🥺",
+  "Dudu is asking you nicely! 🧸",
+  "Bubu says choose ACCEPT! 💗",
+  "Look at that magical ACCEPT button! 😝",
+  "Come on, princess, birthday magic awaits! ✨"
+ ];
+
+ text.textContent=messages[
+  Math.min(rejectCount-1,messages.length-1)
+ ];
+}
+
+function openLetter(){
+ const envelope=document.getElementById("envelope");
+ envelope.classList.remove("boom");
+ void envelope.offsetWidth;
+ envelope.classList.add("boom");
+
+ confetti();
+
+ setTimeout(()=>{
+  document.getElementById("letterArea").classList.remove("hidden");
+  document.getElementById("letterArea").scrollIntoView({
+   behavior:"smooth",block:"start"
+  });
+ },750);
+}
+
+function moreSurprise(){
+ showScreen("final");
+ confetti();
+ startHearts();
+}
+
+function confetti(){
+ const symbols=["💜","💗","✨","🎀","🌸","💖","🎉","💋"];
+
+ for(let i=0;i<65;i++){
+  const el=document.createElement("div");
+  el.className="confetti";
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(15+Math.random()*18)+"px";
+  el.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),5500);
+ }
+}
+
+let heartTimer=null;
+
+function startHearts(){
+ if(heartTimer)return;
+
+ heartTimer=setInterval(()=>{
+  const el=document.createElement("div");
+  el.className="floating";
+  el.textContent=["💜","💗","✨","🌸","💋"][
+   Math.floor(Math.random()*5)
   ];
-
-  text.textContent =
-    messages[Math.min(rejectCount-1,messages.length-1)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.bottom="-25px";
+  el.style.fontSize="23px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),5000);
+ },850);
 }
 
-function openLetter() {
-  const envelope = document.getElementById("envelope");
-  const area = document.getElementById("letterArea");
-
-  envelope.classList.remove("boom");
-  void envelope.offsetWidth;
-  envelope.classList.add("boom");
-
-  confetti();
-
-  setTimeout(() => {
-    area.classList.remove("hidden");
-    area.scrollIntoView({behavior:"smooth",block:"start"});
-  },700);
-}
-
-function moreSurprise() {
-  document.getElementById("celebration").classList.add("hidden");
-  document.getElementById("finalScreen").classList.remove("hidden");
-
-  confetti();
-  startHearts();
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function confetti() {
-  const symbols = ["💜","💗","✨","🎀","🌸","💖","🎉","💋"];
-
-  for(let i=0;i<65;i++) {
-    const item = document.createElement("div");
-    item.className = "confetti";
-    item.textContent =
-      symbols[Math.floor(Math.random()*symbols.length)];
-
-    item.style.left = Math.random()*100+"vw";
-    item.style.fontSize = (15+Math.random()*20)+"px";
-    item.style.animationDuration = (2+Math.random()*3)+"s";
-
-    document.body.appendChild(item);
-    setTimeout(()=>item.remove(),5500);
-  }
-}
-
-let heartTimer = null;
-
-function startHearts() {
-  if(heartTimer) return;
-
-  heartTimer = setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "sparkle";
-    heart.textContent = ["💜","💗","✨","🌸","💋"][
-      Math.floor(Math.random()*5)
-    ];
-
-    heart.style.left = Math.random()*100+"vw";
-    heart.style.bottom = "-25px";
-    heart.style.fontSize = "23px";
-
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),5000);
-  },600);
-}
-
-function replay() {
-  document.getElementById("finalScreen").classList.add("hidden");
-  document.getElementById("welcome").classList.remove("hidden");
-
-  rejectCount = 0;
-  document.getElementById("accept").style.transform = "scale(1)";
-  document.getElementById("choiceText").textContent =
-    "Dudu and Bubu are waiting for you! 💗";
-
-  document.getElementById("letterArea").classList.add("hidden");
-
-  window.scrollTo({top:0,behavior:"smooth"});
+function replay(){
+ rejectCount=0;
+ document.getElementById("accept").style.transform="scale(1)";
+ document.getElementById("choiceText").textContent=
+  "Dudu and Bubu are waiting! 💗";
+ document.getElementById("letterArea").classList.add("hidden");
+ showScreen("welcome");
 }
 </script>
 
