@@ -8,6 +8,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
  margin:0;
  font-family:"Trebuchet MS",sans-serif;
@@ -16,6 +17,7 @@ body{
  background:linear-gradient(145deg,#fffaff,#eadcff,#f8eaff);
  overflow-x:hidden;
 }
+
 .screen{
  min-height:100vh;
  padding:28px 14px;
@@ -24,7 +26,9 @@ body{
  justify-content:center;
  flex-direction:column;
 }
+
 .hidden{display:none!important}
+
 .card{
  width:min(540px,96%);
  padding:25px 19px;
@@ -32,14 +36,20 @@ body{
  border-radius:30px;
  background:#fffafff2;
  box-shadow:0 12px 45px #9870b52c;
+ animation:cardFloat 4s ease-in-out infinite;
 }
+
 h1{
  color:#875bb1;
  font-size:clamp(2rem,7vw,3rem);
  line-height:1.2;
+ text-shadow:0 3px 12px #d9b9f355;
 }
+
 h2{color:#a176c9}
+
 p{line-height:1.8;font-size:16px}
+
 button{
  border:0;
  border-radius:40px;
@@ -48,19 +58,33 @@ button{
  font-weight:bold;
  cursor:pointer;
  font-family:inherit;
+ transition:transform .25s ease,box-shadow .25s ease;
 }
+
+button:hover{
+ transform:translateY(-4px) scale(1.04);
+ box-shadow:0 9px 24px #a77bd477;
+}
+
+button:active{
+ transform:scale(.94);
+}
+
 .primary{
  color:white;
- background:linear-gradient(130deg,#bd94e5,#885bb5);
+ background:linear-gradient(130deg,#d6a9f4,#a477d1,#885bb5);
  box-shadow:0 6px 20px #a77bd455;
  transform-origin:center;
- transition:transform .3s;
+ transition:transform .3s,box-shadow .3s;
 }
+
 .secondary{
  color:#9166b7;
  background:white;
  border:2px solid #eadcf7;
+ box-shadow:0 5px 15px #d9b9f333;
 }
+
 .buttons{
  display:flex;
  align-items:center;
@@ -69,16 +93,18 @@ button{
  gap:16px;
  margin:25px 0;
 }
+
 .gifbox{
  width:min(340px,92%);
  margin:18px auto;
  padding:8px;
  border:2px solid white;
  border-radius:22px;
- background:#f3e9ff;
+ background:linear-gradient(135deg,#f3e9ff,#fff0fa);
  box-shadow:0 7px 24px #a77bd42c;
  overflow:hidden;
 }
+
 .gifbox img{
  display:block;
  width:100%;
@@ -86,17 +112,21 @@ button{
  object-fit:contain;
  border-radius:14px;
 }
+
 .tenor-gif-embed{
  max-width:100%!important;
  margin:auto!important;
 }
+
 .envelope{
  font-size:95px;
  background:transparent;
  padding:10px;
  animation:float 1.6s infinite;
 }
+
 .envelope.boom{animation:boom .8s ease}
+
 .letter{
  background:linear-gradient(140deg,#fffaff,#f5eaff);
  border:2px solid #d9b9f3;
@@ -108,27 +138,38 @@ button{
  box-shadow:0 8px 30px #b58ad044;
  animation:reveal 1s ease;
 }
+
 .letter h2{text-align:center}
+
 .dance-caption{
  padding:12px;
  background:#f5eaff;
  border-radius:18px;
 }
+
 .floating{
  position:fixed;
  pointer-events:none;
  z-index:20;
  animation:rise 5s linear forwards;
 }
+
 @keyframes rise{
  0%{transform:translateY(0);opacity:0}
  15%{opacity:1}
  100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
 }
+
 @keyframes float{
  0%,100%{transform:translateY(0)}
  50%{transform:translateY(-10px)}
 }
+
+@keyframes cardFloat{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-4px)}
+}
+
 @keyframes boom{
  0%{transform:scale(1)}
  25%{transform:scale(1.5) rotate(-12deg)}
@@ -136,10 +177,12 @@ button{
  75%{transform:scale(1.2)}
  100%{transform:scale(1)}
 }
+
 @keyframes reveal{
  from{opacity:0;transform:scale(.3) rotate(-8deg)}
  to{opacity:1;transform:scale(1) rotate(0)}
 }
+
 .confetti{
  position:fixed;
  top:-25px;
@@ -147,16 +190,20 @@ button{
  pointer-events:none;
  animation:fall 3.5s linear forwards;
 }
+
 @keyframes fall{
  to{transform:translateY(110vh) rotate(700deg);opacity:0}
 }
+
 .final-kiss{
  animation:kiss .38s ease-in-out infinite alternate;
 }
+
 @keyframes kiss{
  from{transform:scale(.94)}
  to{transform:scale(1.08)}
 }
+
 .love-message{
  background:linear-gradient(140deg,#fff3fb,#f1e4ff);
  border:2px solid white;
@@ -165,19 +212,28 @@ button{
  margin:22px auto;
  box-shadow:0 7px 24px #a77bd42c;
 }
+
 .love-message p{
  color:#9467b6;
  font-size:16px;
 }
+
 .love-message h2{
  color:#a45eae;
 }
-footer{font-size:12px;color:#aa8bc2;margin:15px}
+
+footer{
+ font-size:12px;
+ color:#aa8bc2;
+ margin:15px;
+}
+
 @media(max-width:450px){
  .card{padding:20px 13px}
  .buttons{gap:12px}
  button{padding:14px 20px}
 }
+
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{
   animation:none!important;
@@ -214,10 +270,10 @@ footer{font-size:12px;color:#aa8bc2;margin:15px}
 
   <div class="buttons">
    <button class="primary" id="accept"
-    onclick="acceptSurprise()">ACCEPT 💜</button>
+    onclick="acceptSurprise()">YES 💗</button>
 
    <button class="secondary"
-    onclick="rejectClicked()">REJECT 🙈</button>
+    onclick="rejectClicked()">NO 🙈</button>
   </div>
 
   <p id="choiceText" style="font-size:13px">
@@ -429,7 +485,6 @@ let musicTimer=null;
 let musicStep=0;
 
 // ROMANTIC ORIGINAL INSTRUMENTAL
-// Soft piano-like notes and warm harmonies.
 const melody=[
  [261.63,329.63,392.00],
  [293.66,349.23,440.00],
@@ -491,18 +546,13 @@ async function startMusic(){
   musicStarted=true;
   musicBeat();
   musicTimer=setInterval(musicBeat,2200);
- }catch(error){
-  // Browser may require another user interaction.
- }
+ }catch(error){}
 }
 
-// Try automatic playback when the website opens.
 window.addEventListener("load",()=>{
  startMusic();
 });
 
-// If browser blocks autoplay, begin on the first touch/click.
-// No visible music button is needed.
 function firstInteraction(){
  startMusic();
  document.removeEventListener("pointerdown",firstInteraction);
@@ -512,7 +562,6 @@ function firstInteraction(){
 document.addEventListener("pointerdown",firstInteraction);
 document.addEventListener("keydown",firstInteraction);
 
-// Soft clicking sound.
 function clickSound(){
  try{
   const ctx=getAudio();
@@ -548,15 +597,15 @@ function rejectClicked(){
  const accept=document.getElementById("accept");
  const text=document.getElementById("choiceText");
 
- // Only ACCEPT grows. REJECT stays the same size.
+ // Only YES grows. NO stays the same size.
  const scale=Math.min(1+rejectCount*.18,2.2);
  accept.style.transform="scale("+scale+")";
 
  const messages=[
   "Are you sure, princess? 🥺",
   "Dudu is asking you nicely! 🐻",
-  "Bubu says choose ACCEPT! 💗",
-  "Look at that magical ACCEPT button! 😝",
+  "Bubu says choose YES! 💗",
+  "Look at that magical YES button! 😝",
   "Come on, princess, birthday magic awaits! ✨"
  ];
 
